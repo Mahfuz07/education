@@ -91,7 +91,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://localhost:3306/elearn_class?createDatabaseIfNotExist=true");
+        dataSourceBuilder.url("jdbc:mysql://localhost:3306/elearn_class");
         dataSourceBuilder.username("root");
         dataSourceBuilder.password("Am27692921");
         return dataSourceBuilder.build();
