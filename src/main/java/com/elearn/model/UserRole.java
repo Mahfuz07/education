@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
 
 @Entity
 public class UserRole{
@@ -20,6 +19,13 @@ public class UserRole{
     private String roleName;
 
     public UserRole() {
+    }
+    
+    
+    public UserRole(String roleName){
+
+        this.roleName = roleName;
+
     }
 
     public UserRole(int roleId, String roleName) {
