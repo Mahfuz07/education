@@ -42,6 +42,7 @@ public class UsersServiceImp implements UserService {
     @Override
     public boolean saveUserWithAuthority(Users users, Authorities authorities){
 
+    	users.setEnabled(true);
         usersRepository.save(users);
         authoritiesRepository.save(authorities);
         if(users.getUserType().equals("ROLE_STUDENT")){
