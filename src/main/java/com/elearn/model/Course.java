@@ -2,7 +2,9 @@ package com.elearn.model;
 
 
 import javax.persistence.*;
-import java.io.Serializable;
+
+import org.hibernate.annotations.Type;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +24,7 @@ public class Course {
 
     @Column(name = "description")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String description;
 
     @Column(name = "status", nullable = false)
@@ -35,6 +38,7 @@ public class Course {
 
     @Column(name = "introVideo")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String introVideo;
 
     @OneToMany(targetEntity = Lesson.class,fetch = FetchType.LAZY, mappedBy = "course")
