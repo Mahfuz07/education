@@ -99,7 +99,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.postgresql.Driver");
-        dataSourceBuilder.url("jdbc:jdbc:postgres://hsqjntukcpnced:4ed6a10a0de71448090d304dc79ede4da3fe578f501dff333eb95f5da4df9db9@ec2-3-223-21-106.compute-1.amazonaws.com:5432/dfsfjdgoqvbc1l");
+        dataSourceBuilder.url("jdbc:jdbc:postgresql://hsqjntukcpnced:4ed6a10a0de71448090d304dc79ede4da3fe578f501dff333eb95f5da4df9db9@ec2-3-223-21-106.compute-1.amazonaws.com:5432/dfsfjdgoqvbc1l");
         dataSourceBuilder.username("hsqjntukcpnced");
         dataSourceBuilder.password("4ed6a10a0de71448090d304dc79ede4da3fe578f501dff333eb95f5da4df9db9");
         return dataSourceBuilder.build();
