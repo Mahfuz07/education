@@ -9,7 +9,7 @@
         $scope.getAllCourse = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/topics/allCoursesInfo'
+                url: 'topics/allCoursesInfo'
             }).then(function (response) {
                 $scope.courses = response.data;
             });
@@ -23,7 +23,7 @@
 //        alert($scope.clickedCourse.courseId);
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/topics/lessonByCourseId/' + $scope.clickedCourse.courseId
+                url: 'topics/lessonByCourseId/' + $scope.clickedCourse.courseId
             }).then(function (response) {
                 $scope.lessons = response.data;
             });

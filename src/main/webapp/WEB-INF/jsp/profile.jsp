@@ -10,7 +10,7 @@
         $scope.getUser = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/users/userByUserName/' + $scope.username
+                url: 'users/userByUserName/' + $scope.username
             }).then(function (response) {
                 $scope.user = response.data;
             });
@@ -23,7 +23,7 @@
             //get student info by username
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/students/student/' + $scope.username
+                url: 'students/student/' + $scope.username
             }).then(function (response) {
                 $scope.userStudent = response.data;
             });

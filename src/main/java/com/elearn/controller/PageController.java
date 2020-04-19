@@ -12,25 +12,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class PageController {
 
-//
-//    @GetMapping("/")
-//    public String loadHomePage(Model model) {
-//        System.out.println("enter index controller \n\n\n\n");
-//
-//        model.addAttribute("page", "home_page");
-//
-//   //     User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//    //    System.out.println(user.getAuthorities());
-//        return "index";
-//    }
+
+    @GetMapping("/")
+    public String loadHomePage(Model model) {
+        System.out.println("enter index controller \n\n\n\n");
+
+        model.addAttribute("page", "home_page");
+
+   //     User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+    //    System.out.println(user.getAuthorities());
+        return "index";
+    }
 	
-	@GetMapping("/")
-	@ResponseBody
-	public String homeView() {
-		
-		return "Hello world";
-	}
+    
+//	@GetMapping("/")
+//	@ResponseBody
+//	public String homeView() {
+//		
+//		return "Hello world";
+//	}
 
     @RequestMapping("/courses")
     public String loadCoursesPage(Model model) {

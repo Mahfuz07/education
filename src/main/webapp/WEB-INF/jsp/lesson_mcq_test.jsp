@@ -9,7 +9,7 @@
         $scope.getAllQuestionsByLessonId = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/questions/questionsByLessonId/' + ${lessonId}
+                url: 'questions/questionsByLessonId/' + ${lessonId}
             }).then(function (response) {
                 $scope.questions = response.data;
             });

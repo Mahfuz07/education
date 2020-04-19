@@ -7,7 +7,7 @@
         $scope.getAllPost = function () {
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/posts/allPosts'
+                url: 'posts/allPosts'
             }).then(function (response) {
                 $scope.posts = response.data;
             });

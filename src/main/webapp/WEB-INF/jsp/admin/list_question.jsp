@@ -9,7 +9,7 @@
             $scope.lessonId = lessonId;
             $http({
                 method: 'GET',
-                url: 'http://localhost:8080/topics/allCoursesInfo'
+                url: 'topics/allCoursesInfo'
             }).then(function (response) {
                 $scope.lesson = response.data;
             });
