@@ -2,6 +2,9 @@ package com.elearn.model;
 
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
 import java.util.Date;
 
 @Entity
@@ -20,14 +23,17 @@ public class Event {
 
     @Column(name="videoUrl", nullable=false)
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String videoUrl;
 
     @Column(name="notesFile")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String notesFile;
 
     @Column(name="presentationFile")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String presentationFile;
 
     @Column(name="eventCreatorName", nullable=false, length=100)
@@ -35,10 +41,12 @@ public class Event {
 
     @Column(name="description")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String description;
 
     @Column(name="eventPhoto")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String eventPhoto;
 
     @Temporal(TemporalType.TIMESTAMP)
