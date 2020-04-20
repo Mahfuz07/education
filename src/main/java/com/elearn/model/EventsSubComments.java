@@ -3,6 +3,8 @@ package com.elearn.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class EventsSubComments {
 
@@ -16,6 +18,7 @@ public class EventsSubComments {
 
     @Column( nullable = false)
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String subComments;
 
     @Column( nullable = false, length = 60)

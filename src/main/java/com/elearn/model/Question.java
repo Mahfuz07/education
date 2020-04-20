@@ -3,6 +3,8 @@ package com.elearn.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Question {
 
@@ -13,22 +15,27 @@ public class Question {
 
     @Column(name = "question", nullable = false)
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String questionType;
 
     @Column(name = "aOne", nullable = false)
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String aone;
 
     @Column(name = "aTwo", nullable = false)
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String atwo;
 
     @Column(name = "aThree", nullable = false)
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String athree;
 
     @Column(name = "aFour", nullable = false)
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String afour;
 
     @Column(name = "cAnswer", nullable = false, length = 45)

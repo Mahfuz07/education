@@ -3,6 +3,9 @@ package com.elearn.model;
 
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
 import java.util.Date;
 
 @Entity
@@ -26,14 +29,17 @@ public class Teacher  {
 
     @Column(name = "presentAddress")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String presentAddress;
 
     @Column(name = "permanentAddress")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String permanentAddress;
 
     @Column(name = "details")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String details;
 
     public Teacher() {

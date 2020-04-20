@@ -3,6 +3,8 @@ package com.elearn.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Comments {
 
@@ -19,6 +21,7 @@ public class Comments {
 
     @Column(name = "comment", nullable = false)
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String comment;
 
     public Comments() {

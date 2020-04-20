@@ -2,6 +2,9 @@ package com.elearn.model;
 
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
 import java.util.Date;
 
 
@@ -21,6 +24,7 @@ public class Posts {
 
     @Column(name = "postContent", nullable = false)
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String postContent;
 
     @Column(name = "postShorten", nullable = false)
@@ -41,6 +45,7 @@ public class Posts {
 
     @Column(name = "image")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String image;
 
     @Column(name = "views", nullable = false)

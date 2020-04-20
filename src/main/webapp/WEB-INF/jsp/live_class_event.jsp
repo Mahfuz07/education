@@ -199,6 +199,8 @@
                 $scope.clickedEvent = cevent;
                 $scope.videoToDisplay = $scope.clickedEvent.videoUrl;
 //                $scope.getAllEvents();
+
+                $scope.getAllComments($scope.eventId);
             }
         };
 
@@ -264,7 +266,13 @@
 
                                 <div ng-click="startVideo(event)" class="panel panel-default">
                                     <div class="panel-heading">
-                                        <img width="100%" src="${pageContext.request.contextPath}/resources/{{event.eventPhoto}}"/>
+                                    
+                                    
+                                         <c:if test="${event.eventPhoto != null}">
+
+                                                 <img width="100%" src="${pageContext.request.contextPath}/resources/{{event.eventPhoto}}"/>
+
+                                            </c:if>
                                         <h3>{{event.eventName}} <i class="fa fa-play-circle-o pull-right"></i></h3>
                                     </div>
                                     <div class="panel-body">

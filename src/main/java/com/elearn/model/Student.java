@@ -4,6 +4,8 @@ package com.elearn.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Student {
 
@@ -23,10 +25,12 @@ public class Student {
 
     @Column(name = "presentAddress")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String presentAddress;
 
     @Column(name = "permanentAddress")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String permanentAddress;
 
     @Column(name = "religion", length = 45)

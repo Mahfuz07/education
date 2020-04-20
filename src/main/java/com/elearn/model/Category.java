@@ -1,6 +1,7 @@
 package com.elearn.model;
 
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Category {
     @Column(name = "description")
     @Lob
     @Length(min=2,max = 65535)
+    @Type(type = "org.hibernate.type.TextType")
     private String description;
 
     @Column(name = "status")

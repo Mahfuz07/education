@@ -3,6 +3,8 @@ package com.elearn.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 
 @Entity
 public class SubCategory {
@@ -17,6 +19,7 @@ public class SubCategory {
 
     @Column(name="description")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String description;
 
     @Column(name="category_id", nullable=false)

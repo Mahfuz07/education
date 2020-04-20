@@ -3,6 +3,8 @@ package com.elearn.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 
 @Entity
 public class Room {
@@ -17,6 +19,7 @@ public class Room {
 
     @Column(name = "description")
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String description;
 
     @Column(name = "seatCapacity")

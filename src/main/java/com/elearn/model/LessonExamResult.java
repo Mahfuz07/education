@@ -2,6 +2,9 @@ package com.elearn.model;
 
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.Type;
+
 import java.util.Date;
 
 
@@ -21,6 +24,7 @@ public class LessonExamResult {
 
     @Column(name = "lessonName", nullable = false)
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     private String lessonName;
 
     @Column(name = "totalQuestion", nullable = false)
