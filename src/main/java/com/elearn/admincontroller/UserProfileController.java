@@ -47,7 +47,7 @@ public class UserProfileController {
 
     @InitBinder
     public void myInitBiner(WebDataBinder binder) {
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(format, false));
         binder.registerCustomEditor(Date.class, "joinDate", new CustomDateEditor(format, false));
     }

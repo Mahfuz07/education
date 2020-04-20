@@ -147,7 +147,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Date of Birth (dd-MM-yyyy)</label>
-                                                <input type="text" name="dob" value="${user.dob}" class="form-control"/>
+                                                <input type="date" name="dob" value="${user.dob}" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <label>Mobile</label>
@@ -187,7 +187,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Join Date:</label>
-                                            <input type="text" name="joinDate" value="${teacher.joinDate}" class="form-control"/>
+                                            <input type="date" name="joinDate" value="${teacher.joinDate}" class="form-control"/>
                                         </div>
 
                                         <div class="form-group">
