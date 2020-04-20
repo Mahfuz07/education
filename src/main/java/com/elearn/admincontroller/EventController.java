@@ -309,7 +309,17 @@ public class EventController {
     }
 
     @RequestMapping(value = "/updateEvent", method = RequestMethod.POST)
-    public String updateEvent(Event event, Model model) {
+    public String updateEvent(Model model,@Valid Event event, BindingResult result, HttpServletRequest request) {
+    	
+    	 if (result.hasErrors()) {
+             List<ObjectError> errors = result.getAllErrors();
+             for (ObjectError error : errors) {
+                 System.out.println("========" + error.getDefaultMessage());
+
+             }
+             model.addAttribute("em", "Enter Correct Date format");
+             return "redirect:/admin/edit_event/" + event.getEventId();
+         }
 
         try {
             Event e = eventService.findData(event.getEventId());
