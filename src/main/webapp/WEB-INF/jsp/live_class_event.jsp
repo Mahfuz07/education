@@ -14,169 +14,15 @@
             });
         };
         $scope.getPerticularEvent();
-
-
-
-
-
-
-
-        $scope.selectedEvent = {};
-        $scope.clickedTopics = function (eventId) {
-            $scope.selectedtopics = eventId;
-
-            $scope.getAllComments($scope.selectedtopics.eventId);
-            $scope.getAllSComments();
-        };
-
-
-        //comments section start from here
-        //get comments
-        $scope.allComments = [];
-        $scope.getAllComments = function(id){
-            $http({
-                method: 'GET',
-                url: 'eventComments/allEventCommentsByEventId/' + id
-            }).then(function (response) {
-                $scope.allComments = response.data;
-            });
-        };
-
-
-
-        //save commens
-        $scope.comment = "";
-        $scope.userName = "";
-        $scope.eventId = "";
-        $scope.showsubmitComment = function(){
-//            alert($scope.userName);
-//            alert($scope.topicsId);
-//            alert($scope.comment);
-
-            $scope.commentToSave = {'eventsCommentsId':'','username':'','eventId':'','comment':''};
-
-            $scope.commentToSave.comment = $scope.comment;
-            $scope.commentToSave.username = $scope.userName;
-            $scope.commentToSave.eventId = $scope.eventId;
-
-            $http({
-                method: 'GET',
-                url: 'eventComments/allEventCommentsByEventId/' + id
-            }).then(function (response) {
-//                $scope.receiveSaveComments = response.data();
-//                $scope.message = "Comment Saved Successfully";
-//                alert($scope.message);
-                $scope.getAllComments($scope.eventId);
-                $scope.getAllSComments();
-            }, function (reason) {
-                $scope.error_message = reason.data;
-            });
-
-
-        };
-
-
-
-
-
-
-        //save commens
-        $scope.comment = "";
-        $scope.userName = "";
-        $scope.eventId = "";
-        $scope.submitComment = function(){
-//            alert($scope.userName);
-//            alert($scope.topicsId);
-//            alert($scope.comment);
-
-            $scope.commentToSave = {'eventsCommentsId':'','username':'','eventId':'','comment':''};
-
-            $scope.commentToSave.comment = $scope.comment;
-            $scope.commentToSave.username = $scope.userName;
-            $scope.commentToSave.eventId = $scope.eventId;
-
-
-            $http({
-                method: 'POST',
-                url: 'eventComments/saveEventComments',
-                data: angular.toJson($scope.commentToSave),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(function (response) {
-//                $scope.receiveSaveComments = response.data();
-//                $scope.message = "Comment Saved Successfully";
-//                alert($scope.message);
-                $scope.getAllComments($scope.eventId);
-                $scope.getAllSComments();
-            }, function (reason) {
-                $scope.error_message = reason.data;
-            });
-
-
-        };
-
-
-        //sub comments start here
-        //get all subcomments
-        $scope.allScomments = [];
-        $scope.getAllSComments = function(id){
-            $http({
-                method: 'GET',
-                url: 'eventSubComments/allEventSubComments'
-            }).then(function (response) {
-                $scope.allScomments = response.data;
-            });
-        };
-        $scope.getAllSComments();
-
-
-        //save sub comments
-        $scope.cid = "";
-        $scope.subComments = "";
-        $scope.submitSubComment = function(subComments, cid){
-            $scope.subComments = subComments;
-            $scope.cid = cid;
-//            alert($scope.subComments);
-//            alert($scope.cid);
-            $scope.sComments = {'eventsSubCommentsId':'','eventsCommentsId':'','subComments':'','username':''};
-            $scope.sComments.eventsCommentsId = $scope.cid;
-            $scope.sComments.subComments = $scope.subComments;
-            $scope.sComments.username = $scope.userName;
-
-            $http({
-                method: 'POST',
-                url: 'eventSubComments/saveEventSubComments',
-                data: angular.toJson($scope.sComments),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(function (response) {;
-                $scope.getAllComments($scope.eventId);
-                $scope.getAllSComments();
-            }, function (reason) {
-                $scope.error_message = reason.data;
-            });
-
-        };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //start video
+        
+        
+        
+        
+        
+        
+        
+        
+        //start video 
         $scope.clickedEvent = {'notesFile':'','presentationFile':''};
         $scope.videoToDisplay = '';
         $scope.startVideo = function (cevent) {
@@ -202,16 +48,15 @@
             }
         };
 
-
-
-
     });
     liveApp.filter('trustAsResourceUrl', ['$sce', function ($sce) {
-        return function (val) {
-            return $sce.trustAsResourceUrl(val);
-        };
-    }]);
+            return function (val) {
+                return $sce.trustAsResourceUrl(val);
+            };
+        }]);
 </script>
+
+
 <script type="text/javascript">
     function cdtd(){
         time = document.getElementById('timeHolder').value;
