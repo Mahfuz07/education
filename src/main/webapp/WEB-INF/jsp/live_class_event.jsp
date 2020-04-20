@@ -15,13 +15,6 @@
         };
         $scope.getPerticularEvent();
         
-        
-        
-        
-        
-        
-        
-        
         //start video 
         $scope.clickedEvent = {'notesFile':'','presentationFile':''};
         $scope.videoToDisplay = '';
@@ -55,19 +48,17 @@
             };
         }]);
 </script>
-
-
 <script type="text/javascript">
     function cdtd(){
         time = document.getElementById('timeHolder').value;
         var xmas = new Date(time);
         var now = new Date();
-
-
+        
+        
         var timeDiff = xmas.getTime() - now.getTime();
 
         //document.getElementById('timeDisplay').innerHTML = xmas + "<br/>" + now + "<br/>" + timeDiff;
-
+        
 
         if(timeDiff <= 0){
             clearTimeout(timer);
@@ -94,156 +85,96 @@
 </script>
 <div class="col-md-12" style="margin-top: -10px;">
     <div class="col-md-12" ng-app="liveApp" ng-controller="liveCtrl" style="background: #fff; padding: 20px; border: 1px solid #DDD;">
-        <div class="row">
+    <div class="row">
 
-            <div class="col-md-5">
-                <div class="row">
-                    <div class="col-lg-12">
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-lg-12">
 
-                        <div class="panel panel-default" style="cursor: pointer;">
-                            <div class="panel-heading">
-                                <i class="fa fa-dot-circle-o"></i> Live Event <span id="timeBox2" class="pull-right"></span>
-                            </div>
-                            <!-- .panel-heading -->
-                            <div class="panel-body">
+                    <div class="panel panel-default" style="cursor: pointer;">
+                        <div class="panel-heading">
+                            <i class="fa fa-dot-circle-o"></i> Live Event <span id="timeBox2" class="pull-right"></span>
+                        </div>
+                        <!-- .panel-heading -->
+                        <div class="panel-body">
 
-                                <div ng-click="startVideo(event)" class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <img width="100%" src="${pageContext.request.contextPath}/resources/{{event.eventPhoto}}"/>
-                                        <h3>{{event.eventName}} <i class="fa fa-play-circle-o pull-right"></i></h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <font color="tomato" style="font-weight: bold; font-size: 20px;">Creator: {{event.eventCreatorName}} </font><br/>
-                                        Date: {{event.eventDate | date : "MMM d, y h:mm:ss a"}} <br/>
-                                        <div id="timeBox"></div>
-
-                                        <input type="hidden" value="{{event.eventDate| date : 'MMM d, y h:mm:ss a'}}" id="timeHolder"/>
-
-                                        <script type="text/javascript">
-                                            cdtd();
-                                        </script>
-                                        Description : {{event.description}} <br/>
-                                    </div>
+                            <div ng-click="startVideo(event)" class="panel panel-default">
+                                <div class="panel-heading">
+                                    <img width="100%" src="${pageContext.request.contextPath}/resources/{{event.eventPhoto}}"/>
+                                    <h3>{{event.eventName}} <i class="fa fa-play-circle-o pull-right"></i></h3> 
                                 </div>
-
+                                <div class="panel-body">
+                                    <font color="tomato" style="font-weight: bold; font-size: 20px;">Creator: {{event.eventCreatorName}} </font><br/>
+                                    Date: {{event.eventDate | date : "MMM d, y h:mm:ss a"}} <br/>
+                                    <div id="timeBox"></div>
+                                    
+                                    <input type="hidden" value="{{event.eventDate| date : 'MMM d, y h:mm:ss a'}}" id="timeHolder"/>
+                                    
+                                    <script type="text/javascript">
+                                        cdtd();
+                                    </script>
+                                    Description : {{event.description}} <br/>
+                                </div>
                             </div>
-                            <!-- .panel-body -->
-                        </div>
-
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-            </div>
-
-
-            <div class="col-md-7">
-                <div class="row">
-                    <!-- live video -->
-                    <div class="col-md-12">
-                        <div style="width:100%; height: 100%; background: #333; padding: 20px 20px 20px 20px; box-sizing: border-box;">
-                            <iframe ng-if="videoToDisplay === ''" width="100%" height="360" src="https://www.youtube.com/embed/zMzYXOVp13c" frameborder="0" allowfullscreen></iframe>
-                            <iframe ng-if="videoToDisplay !== ''" width="100%" height="360" src="{{videoToDisplay| trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
-
-                            <a ng-if="clickedEvent.notesFile !== ''" href="${pageContext.request.contextPath}/resources/{{clickedEvent.notesFile}}" class="btn btn-success" style="margin-top: 15px;"><i class="fa fa-download"></i> Download Notes</a>
-                            <a ng-if="clickedEvent.presentationFile !== ''" href="${pageContext.request.contextPath}/resources/{{clickedEvent.presentationFile}}" class="btn btn-success" style="margin-top: 15px;"><i class="fa fa-download"></i> Download Presentation</a>
-                            <a ng-if="clickedEvent.notesFile !== '' || clickedEvent.presentationFile !== ''" href="" class="btn btn-warning pull-right" style="margin-top: 15px;">MCQ Exam</a>
 
                         </div>
+                        <!-- .panel-body -->
                     </div>
 
-                    <!-- comments -->
-
+                    <!-- /.panel -->
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
         </div>
-        <div class="row">
 
-            <div class="modal-body" style="overflow: auto;">
+
+        <div class="col-md-7">
+            <div class="row">
+                <!-- live video -->
+                <div class="col-md-12">
+                    <div style="width:100%; height: 100%; background: #333; padding: 20px 20px 20px 20px; box-sizing: border-box;">
+                        <iframe ng-if="videoToDisplay === ''" width="100%" height="360" src="https://www.youtube.com/embed/zMzYXOVp13c" frameborder="0" allowfullscreen></iframe>
+                        <iframe ng-if="videoToDisplay !== ''" width="100%" height="360" src="{{videoToDisplay| trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
+                        
+                        <a ng-if="clickedEvent.notesFile !== ''" href="${pageContext.request.contextPath}/resources/{{clickedEvent.notesFile}}" class="btn btn-success" style="margin-top: 15px;"><i class="fa fa-download"></i> Download Notes</a>
+                        <a ng-if="clickedEvent.presentationFile !== ''" href="${pageContext.request.contextPath}/resources/{{clickedEvent.presentationFile}}" class="btn btn-success" style="margin-top: 15px;"><i class="fa fa-download"></i> Download Presentation</a>
+                        <a ng-if="clickedEvent.notesFile !== '' || clickedEvent.presentationFile !== ''" href="" class="btn btn-warning pull-right" style="margin-top: 15px;">MCQ Exam</a>
+                   
+                    </div>
+                </div>
 
                 <!-- comments -->
-                <sec:authorize access="!isAuthenticated()">
-                    <div class="col-md-4">
-                        <h2>Please Login first to make and see the comments.</h2>
-                        <a class="btn btn-warning" href="${pageContext.request.contextPath}/login"><i class="fa fa-link"></i> Login</a>
+                <div ng-if="showComment" class="col-md-12" style="margin-top: 20px;">
+                    <!-- Left-aligned -->
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
                     </div>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <div class="col-md-12">
-                        <!-- Left-aligned -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Submit</button>
+                    </div>
 
-                        <input type="hidden" ng-model="userName = '${username}'"/>
-                        <input type="hidden" ng-model="eventId = '${event.eventId}'"/>
-                        <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea ng-model="comment" class="form-control" rows="5" id="comment"></textarea>
+                    <div class="media" style="border-bottom: 1px solid #DDD;">
+                        <div class="media-left">
+                            <img src="${pageContext.request.contextPath}/resources/img/avatar1.png" class="media-object" style="width:60px">
                         </div>
-                        <div class="form-group">
-                            <button ng-click="submitComment()" type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Submit</button>
-                        </div>
-                        <div class="form-group">
-                            <button ng-click="showsubmitComment()" type="submit" class="btn btn-primary"><i class="fa fa-send"></i>Show Comments</button>
-                        </div>
-
-
-
-                        <div class="" style="height: 370px; overflow:  scroll; scroll-behavior: inherit; border: 1px solid #DDD; box-sizing: border-box; box-shadow: 0px 0px 5px #DDD;">
-
-
-
-
-                            <div ng-repeat="row in allComments" class="media" style="border-bottom: 1px solid #DDD;">
-                                <div class="media-left">
-                                    <img src="${pageContext.request.contextPath}/resources/img/avatar1.png" class="media-object" style="width:60px">
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">{{row.username}}</h4>
-                                    <p>{{row.comment}}</p>
-                                </div>
-
-                                <div style="margin-left:40px;" ng-if="scrow.eventsCommentsId == row.eventsCommentsId" ng-repeat="scrow in allScomments">
-                                    <div class="col-md-12">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <img src="${pageContext.request.contextPath}/resources/img/avatar1.png" class="media-object" style="width:60px">
-
-                                            </div>
-                                            <div class="col-md-9">
-                                                <h5 class="media-heading" style="font-weight: bold;">{{scrow.username}}</h5>
-                                                <p>{{scrow.subComments}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div style="margin-top: 5px;" id="collapse{{$index + 1}}" class="panel-collapse collapse">
-
-                                    <div class="input-group">
-                                        <input ng-bind="cid = {{row.eventsCommentsId}}" type="hidden" class="form-control">
-                                        <input ng-model="subComments" type="text" class="form-control">
-                                        <div class="input-group-btn btn-primary">
-                                            <a ng-click="submitSubComment(subComments, cid)" href="" class="btn btn-primary">
-                                                <i class="fa fa-send"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <a style="margin-top: 5px; margin-left:5px; margin-bottom: 5px;" class="btn btn-success btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index + 1}}"> Reply </a>
-
-
-                            </div>
-
-
-
+                        <div class="media-body">
+                            <h4 class="media-heading">John Doe</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
                         </div>
                     </div>
-                </sec:authorize>
-
-
-
+                    <div class="media" style="border-bottom: 1px solid #DDD;">
+                        <div class="media-left">
+                            <img src="${pageContext.request.contextPath}/resources/img/avatar1.png" class="media-object" style="width:60px">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">John Doe</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
