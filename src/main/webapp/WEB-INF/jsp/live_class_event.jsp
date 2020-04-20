@@ -123,7 +123,7 @@
         $scope.getAllSComments = function(id){
             $http({
                 method: 'GET',
-                url: 'eventSubComments/allEventSubComments'
+                url: '/live_class_event/eventSubComments/allEventSubComments'
             }).then(function (response) {
                 $scope.allScomments = response.data;
             });
