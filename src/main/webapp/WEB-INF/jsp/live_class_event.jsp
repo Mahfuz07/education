@@ -9,7 +9,7 @@
         $scope.getPerticularEvent = function () {
             $http({
                 method: 'GET',
-                url: 'events/event/' + ${event.eventId}}).then(function (response) {
+                url: '/events/event/' + ${event.eventId}}).then(function (response) {
                 $scope.event = response.data;
             });
         };
@@ -36,7 +36,7 @@
         $scope.getAllComments = function(id){
             $http({
                 method: 'GET',
-                url: 'eventComments/allEventCommentsByEventId/' + id
+                url: '/eventComments/allEventCommentsByEventId/' + id
             }).then(function (response) {
                 $scope.allComments = response.data;
             });
@@ -61,7 +61,7 @@
 
             $http({
                 method: 'GET',
-                url: 'eventComments/allEventCommentsByEventId/' + id
+                url: '/eventComments/allEventCommentsByEventId/' + id
             }).then(function (response) {
 //                $scope.receiveSaveComments = response.data();
 //                $scope.message = "Comment Saved Successfully";
@@ -98,7 +98,7 @@
 
             $http({
                 method: 'POST',
-                url: 'eventComments/saveEventComments',
+                url: '/eventComments/saveEventComments',
                 data: angular.toJson($scope.commentToSave),
                 headers: {
                     'Content-Type': 'application/json'
@@ -123,7 +123,7 @@
         $scope.getAllSComments = function(id){
             $http({
                 method: 'GET',
-                url: '/live_class_event/eventSubComments/allEventSubComments'
+                url: '/eventSubComments/allEventSubComments'
             }).then(function (response) {
                 $scope.allScomments = response.data;
             });
@@ -146,7 +146,7 @@
 
             $http({
                 method: 'POST',
-                url: 'eventSubComments/saveEventSubComments',
+                url: '/eventSubComments/saveEventSubComments',
                 data: angular.toJson($scope.sComments),
                 headers: {
                     'Content-Type': 'application/json'
