@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,16 +32,25 @@ public class LiveClassEventController {
     }
 
     @RequestMapping("/live_class_event/{id}")
-    public String loadLiveClassEventPage(@PathVariable("id") int id, Model model) {
-        try {
-            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("username", u.getUsername());
-            model.addAttribute("event", eventService.findData(id));
-        } catch (Exception ex) {
-            Logger.getLogger(LiveClassEventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        model.addAttribute("page", "live_class_event_page");
-        return "index";
+    public String loadLiveClassEventPage(@PathVariable("id") int id, Model model,Principal principal) {
+    	 model.addAttribute("page", "live_class_event_page");
+         model.addAttribute("event", eventService.findData(id));
+         try {
+             //User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+             if(principal == null){
+
+             }else {
+                 model.addAttribute("username", principal.getName());
+             }
+
+
+
+         } catch (Exception ex) {
+             Logger.getLogger(LiveClassEventController.class.getName()).log(Level.SEVERE, null, ex);
+         }
+
+         return "index";
     }
 
 }

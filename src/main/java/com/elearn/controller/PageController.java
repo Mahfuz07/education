@@ -1,5 +1,7 @@
 package com.elearn.controller;
 
+import java.security.Principal;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -40,15 +42,17 @@ public class PageController {
     }
 
     @RequestMapping("/course/{id}")
-    public String loadCoursePage(Model model, @PathVariable("id") int id) {
+    public String loadCoursePage(Model model, @PathVariable("id") int id,Principal principal) {
         model.addAttribute("page", "course_page");
         model.addAttribute("courseId", id);
 
         try {
 
             //Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("username", u.getUsername());
+           // User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        	if(principal != null) {
+                model.addAttribute("username", principal.getName());
+            	}
         } catch (Exception e) {
             e.printStackTrace();
         }
