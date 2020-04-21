@@ -5,6 +5,8 @@
     liveApp.controller("liveCtrl", function ($http, $scope, $filter) {
         $scope.showComment = false;
 
+
+
         $scope.event = {};
         $scope.getPerticularEvent = function () {
             $http({
@@ -13,11 +15,8 @@
                 $scope.event = response.data;
             });
         };
+
         $scope.getPerticularEvent();
-
-
-
-
 
 
 
@@ -131,6 +130,7 @@
         $scope.getAllSComments();
 
 
+
         //save sub comments
         $scope.cid = "";
         $scope.subComments = "";
@@ -187,12 +187,20 @@
             //convert current date
             $scope.date = new Date();
             $scope.currentDate = $filter('date')($scope.date, 'yyyy-MM-dd HH:mm:ss');
+
+
             //compate current date with event date
             if($scope.currentDate < $scope.clickedEvent.eventDate){
 //                alert("current Date " + $scope.currentDate + "\nEvent Date " + $scope.clickedEvent.eventDate);
                 alert("You Can't See This Video Right Now. Please Come Back Later");
                 $scope.clickedEvent = {'notesFile':'','presentationFile':''};
                 $scope.getPerticularEvent();
+
+
+
+
+
+
             }else if($scope.clickedEvent.eventDate <= $scope.currentDate){
 //                alert("current Date " + $scope.currentDate + "\nEvent Date " + $scope.clickedEvent.eventDate);
                 $scope.showComment = true;
@@ -201,6 +209,7 @@
 //                $scope.getAllEvents();
 
                 $scope.getAllComments($scope.eventId);
+
             }
         };
 
@@ -266,13 +275,14 @@
 
                                 <div ng-click="startVideo(event)" class="panel panel-default">
                                     <div class="panel-heading">
-                                    
-                                    
-                                         <c:if test="${event.eventPhoto != null}">
+
+                                            <c:if test="${event.eventPhoto != null}">
 
                                                  <img width="100%" src="${pageContext.request.contextPath}/resources/{{event.eventPhoto}}"/>
 
                                             </c:if>
+
+
                                         <h3>{{event.eventName}} <i class="fa fa-play-circle-o pull-right"></i></h3>
                                     </div>
                                     <div class="panel-body">
@@ -336,16 +346,13 @@
                         <!-- Left-aligned -->
 
                         <input type="hidden" ng-model="userName = '${username}'"/>
-                        <input type="hidden" ng-model="eventId = '${event.eventId}'"/>
+                        <input type="hidden" ng-model="eventId = ${event.eventId}"/>
                         <div class="form-group">
                             <label for="comment">Comment:</label>
                             <textarea ng-model="comment" class="form-control" rows="5" id="comment"></textarea>
                         </div>
                         <div class="form-group">
                             <button ng-click="submitComment()" type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Submit</button>
-                        </div>
-                        <div class="form-group">
-                            <button ng-click="showsubmitComment()" type="submit" class="btn btn-primary"><i class="fa fa-send"></i>Show Comments</button>
                         </div>
 
 
