@@ -25,14 +25,14 @@ public class EventCommentsRestController {
 
         System.out.println("===" + comments.toString());
 
-        if(comments.getComment().trim().isEmpty()) {
+        
             try {
 
                 eventCommentsService.saveData(comments);
             } catch (Exception ex) {
-                Logger.getLogger(CommentsRestController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EventCommentsRestController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        
 
         return comments;
     }

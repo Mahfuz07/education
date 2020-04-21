@@ -31,7 +31,7 @@ public class EventSubCommentsRestController {
         try {
             eventSubCommentsService.saveData(subComments);
         } catch (Exception ex) {
-            Logger.getLogger(SubCommentsRestController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventSubCommentsRestController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return subComments;

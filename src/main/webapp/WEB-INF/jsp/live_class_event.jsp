@@ -44,7 +44,7 @@
 
 
         //save commens
-        $scope.comment = "";
+        $scope.comment = null;
         $scope.userName = "";
         $scope.eventId = "";
         $scope.showsubmitComment = function(){
@@ -80,7 +80,7 @@
 
 
         //save commens
-        $scope.comment = "";
+        $scope.comment = null;
         $scope.userName = "";
         $scope.eventId = "";
         $scope.submitComment = function(){
@@ -133,7 +133,7 @@
 
         //save sub comments
         $scope.cid = "";
-        $scope.subComments = "";
+        $scope.subComments = null;
         $scope.submitSubComment = function(subComments, cid){
             $scope.subComments = subComments;
             $scope.cid = cid;
