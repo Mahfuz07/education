@@ -126,7 +126,7 @@
                     </div>
                     <div class="form-group">
                         <label>Date of Birth: (dd-MM-yyyy)</label>
-                        <input type="datetime" name="dob" class="form-control" required=""/>
+                        <input type="date" name="dob" class="form-control" required=""/>
                     </div>
 
 
