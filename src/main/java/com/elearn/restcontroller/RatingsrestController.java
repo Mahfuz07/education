@@ -1,6 +1,8 @@
 package com.elearn.restcontroller;
 
 import com.elearn.model.Ratings;
+import com.elearn.model.Users;
+import com.elearn.repository.UsersRepository;
 import com.elearn.service.RatingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,15 +20,21 @@ public class RatingsrestController {
 
     private RatingsService ratingsService;
 
+    private UsersRepository usersRepository;
+
     @Autowired
-    public RatingsrestController(RatingsService ratingsService) {
+    public RatingsrestController(RatingsService ratingsService, UsersRepository usersRepository) {
         this.ratingsService = ratingsService;
+        this.usersRepository = usersRepository;
     }
 
     @RequestMapping(value = "/savePostRatings", method = RequestMethod.POST, headers = "Accept=application/json")
     public Ratings savePostRatings(@RequestBody Ratings r) {
         User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        r.setUsername(u.getUsername());
+        
+        Users user = usersRepository.findByUsername(u.getUsername());
+
+        r.setUsers(user);
         try {
             ratingsService.saveData(r);
         } catch (Exception ex) {

@@ -3,6 +3,8 @@ package com.elearn.model;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -55,6 +57,10 @@ public class Users{
 
     @Column(name = "userType", length = 45)
     private String userType;
+    
+    
+    @OneToMany(targetEntity = Ratings.class,fetch = FetchType.LAZY, mappedBy = "users")
+    private Set<Ratings> ratings = new HashSet<Ratings>(0);
 
 
     public Users() {
@@ -69,7 +75,7 @@ public class Users{
         this.username = username;
     }
 
-    public Users(String authority, Date dob, String email, boolean enabled, String firstName, Boolean gender, String lastName, String mobile, String password, String photo, Date registerDate, String username, String userType) {
+    public Users(String authority, Date dob, String email, boolean enabled, String firstName, Boolean gender, String lastName, String mobile, String password, String photo, Date registerDate, String username, String userType,Set<Ratings> ratings) {
         this.authority = authority;
         this.dob = dob;
         this.email = email;
@@ -83,6 +89,7 @@ public class Users{
         this.registerDate = registerDate;
         this.username = username;
         this.userType = userType;
+        this.ratings = ratings;
     }
 
     public Integer getUserId() {
@@ -196,4 +203,14 @@ public class Users{
     public void setUserType(String userType) {
         this.userType = userType;
     }
+
+	public Set<Ratings> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(Set<Ratings> ratings) {
+		this.ratings = ratings;
+	}
+    
+    
 }

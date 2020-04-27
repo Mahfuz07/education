@@ -24,6 +24,8 @@ import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -44,7 +46,7 @@ public class ProfileController {
 
     @InitBinder
     public void myInitBiner(WebDataBinder binder) {
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(format, false));
     }
 
@@ -105,6 +107,11 @@ public class ProfileController {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         String name = timeStamp + ".png";
 
+
+        Users existingImage = userService.getUserByUserName(users.getUsername());
+
+        String deleteImage = existingImage.getPhoto();
+
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -123,11 +130,15 @@ public class ProfileController {
                     dir.mkdirs();
                 }
 
+
+
                 // Create the file on server
                 File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                 stream.write(bytes);
                 stream.close();
+
+                Files.delete(Paths.get("src/main/webapp/resources/"+deleteImage));
 
                 System.out.println("======== Server File Location="
                         + serverFile.getAbsolutePath());
@@ -142,7 +153,7 @@ public class ProfileController {
             System.out.println("You failed to upload " + name + " because the file was empty.");
         }
 
-        users.setPhoto("upload/user_photo/" + name);
+        users.setPhoto("upload/user_photo/"+name);
 
         System.out.println("===" + users.getUsername());
         System.out.println("===" + users.getPhoto());

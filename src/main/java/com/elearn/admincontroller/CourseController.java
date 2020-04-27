@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -192,6 +194,10 @@ public class CourseController {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         String name = timeStamp + ".pdf";
 
+        Course existingImage = courseService.findData(courseId);
+
+        String deleteImage = existingImage.getCourseBook();
+
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -215,6 +221,8 @@ public class CourseController {
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                 stream.write(bytes);
                 stream.close();
+
+                Files.delete(Paths.get("src/main/webapp/resources/"+deleteImage));
 
                 System.out.println("======== Server File Location="
                         + serverFile.getAbsolutePath());

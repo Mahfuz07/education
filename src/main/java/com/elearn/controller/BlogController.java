@@ -2,6 +2,8 @@ package com.elearn.controller;
 
 import com.elearn.model.Posts;
 import com.elearn.model.Ratings;
+import com.elearn.model.Users;
+import com.elearn.repository.UsersRepository;
 import com.elearn.restcontroller.RatingsrestController;
 import com.elearn.service.PostsService;
 import com.elearn.service.RatingsService;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,11 +28,14 @@ public class BlogController {
     private PostsService postsService;
 
     private RatingsService ratingsService;
+    
+    private UsersRepository usersRepository;
 
     @Autowired
-    public BlogController(PostsService postsService, RatingsService ratingsService) {
+    public BlogController(PostsService postsService, RatingsService ratingsService, UsersRepository usersRepository) {
         this.postsService = postsService;
         this.ratingsService = ratingsService;
+        this.usersRepository = usersRepository;
     }
 
     @RequestMapping(value = "/blog", method = RequestMethod.GET)
@@ -45,6 +51,13 @@ public class BlogController {
             p.setViews(p.getViews() + 1);
             postsService.updateData(p);
             model.addAttribute("post", postsService.findData(postId));
+            
+            
+         // Ratings ratings = new Ratings();
+            List<Ratings> ratings = ratingsService.findRatingsByBlogPostId(postId);
+
+            //ratings.setPostId(p.getPostId());
+            model.addAttribute("review",ratings);
         } catch (Exception ex) {
             Logger.getLogger(BlogController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,18 +91,19 @@ public class BlogController {
     @RequestMapping(value = "/savePostRatings", method = RequestMethod.POST)
     public String savePostRatings(Ratings r) {
 
-        try {
-            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            if(u != null) {
-                r.setUsername(u.getUsername());
-                ratingsService.saveData(r);
-            }else {
-                return "redirect:/single_blog/" + r.getPostId();
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(RatingsrestController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "redirect:/single_blog/" + r.getPostId();
+    	  try {
+              User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+              Users user = usersRepository.findByUsername(u.getUsername());
+              if(u != null) {
+                  r.setUsers(user);
+                  ratingsService.saveData(r);
+              }else {
+                  return "redirect:/single_blog/" + r.getPostId();
+              }
+          } catch (Exception ex) {
+              Logger.getLogger(RatingsrestController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          return "redirect:/single_blog/" + r.getPostId();
     }
 
 

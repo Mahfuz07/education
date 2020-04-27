@@ -7,7 +7,7 @@
         $scope.getAllPost = function () {
             $http({
                 method: 'GET',
-                url: 'posts/allPosts'
+                url: '/posts/allPosts'
             }).then(function (response) {
                 $scope.posts = response.data;
             });
@@ -16,23 +16,26 @@
 
 
 
-//        $scope.rating = function () {
-//            $scope.ratings = {'ratingId': '', 'rating': '', 'postId': '', 'topicsId': '', 'eventId': '', 'username': ''};
-//            $scope.ratings.rating = document.getElementById("input-21e").value;
-//            $scope.ratings.postId = document.getElementById("postId").value;
-//            $http({
-//                method: 'POST',
-//                url: 'http://localhost:8080/BlendedEducationSystem/ratings/savePostRatings',
-//                data: angular.toJson($scope.ratings),
-//                headers: {
-//                    'Content-Type': 'application/json'
-//                }
-//            }).then(function (response) {
-//                $scope.os = 1;
-//            }, function (reason) {
-//                $scope.oe = 0;
-//            });
-//        };
+       // $scope.rating = function () {
+       //     $scope.ratings = {'ratingId': '', 'rating': '', 'postId': '', 'topicsId': '', 'eventId': '', 'username': ''};
+       //     $scope.ratings.rating = document.getElementById("input-21e").value;
+       //     $scope.ratings.postId = document.getElementById("postId").value;
+       //     $http({
+       //         method: 'POST',
+       //         url: '/ratings/savePostRatings',
+       //         data: angular.toJson($scope.ratings),
+       //         headers: {
+       //             'Content-Type': 'application/json'
+       //         }
+       //     }).then(function (response) {
+       //         $scope.os = 1;
+       //     }, function (reason) {
+       //         $scope.oe = 0;
+       //     });
+       // };
+
+
+
 
     });
 </script>
@@ -70,24 +73,69 @@
                         </div>
                     </div>
 
+
+                    <div style="line-height: 30px;"><label>Ratings & Reviews </label></div>
                     <sec:authorize access="isAuthenticated()">
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <form action="${pageContext.request.contextPath}/savePostRatings" method="post">
-                                    <div class="col-md-3" style="line-height: 30px;"><label>Rating: </label></div>
-                                    <div class="col-md-12">
-                                        <input type="hidden" name="postId" id="postId" value="${post.postId}"/>
-                                        <input id="input-21e" name="rating" value="0" type="text" class="rating" data-min=0 data-max=5 data-step=1 data-size="xs" title="">
-                                        <button type="submit" style="margin-top: 10px;">Submit</button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p> Rating : ${rating}</p>
+                            </div>
+                        </div>
+
+
+
+
+
+                            <div class="row" >
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <form action="${pageContext.request.contextPath}/savePostRatings" method="post">
+
+                                            <div class="col-md-12">
+                                                <input type="hidden" name="postId" id="postId" value="${post.postId}"/>
+                                                <input id="input-21e" name="rating" value="0" type="text" class="rating" data-min=0 data-max=5 data-step=1 data-size="xs" title="">
+                                                <textarea type="text" class="col-md-10" style="margin-top: 15px;" name="content" required="required" placeholder="content"></textarea>
+
+                                                <button type="submit" style="margin-top: 15px;">Submit</button>
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
+
+                                </div>
                             </div>
 
+
+<%--Rating--%>
+                        <div style="line-height: 30px;">
+
+                                                        <table >
+                                                            <c:forEach var="r" items="${review}">
+                                                                <tr>
+                                                                    <td><img src="${pageContext.request.contextPath}/resources/img/avatar1.png" class="media-object" style="width:60px"></td>
+                                                                    <td >rating: ${r.rating}</td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td >${r.users.username}</td>
+                                                                    <td >Comment: ${r.content}</td>
+                                                                </tr>
+
+
+
+
+
+                                                            </c:forEach>
+                                                        </table>
                         </div>
-                    </div>
+<%--Ratinng--%>
+
                        </sec:authorize>
+
+
+
+
+
                 </div>
             </div>
 

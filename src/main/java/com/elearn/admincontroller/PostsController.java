@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -110,6 +112,10 @@ public class PostsController {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         String name = timeStamp + ".png";
 
+        Posts existingImage = postsService.findData(postId);
+
+        String deleteImage = existingImage.getImage();
+
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -133,6 +139,8 @@ public class PostsController {
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                 stream.write(bytes);
                 stream.close();
+
+                Files.delete(Paths.get("src/main/webapp/resources/"+deleteImage));
 
                 System.out.println("======== Server File Location="
                         + serverFile.getAbsolutePath());

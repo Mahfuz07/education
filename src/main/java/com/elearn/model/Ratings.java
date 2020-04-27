@@ -15,6 +15,9 @@ public class Ratings {
     @Column(name = "rating")
     private Integer rating;
 
+    @Column(name = "content")
+    private String content;
+
     @Column(name = "postId")
     private Integer postId;
 
@@ -24,22 +27,24 @@ public class Ratings {
     @Column(name = "eventId")
     private Integer eventId;
 
-    @Column(name = "username", nullable = false, length = 45)
-    private String username;
+    @ManyToOne(targetEntity = Users.class,fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users users;
 
     public Ratings() {
     }
 
-    public Ratings(String username) {
-        this.username = username;
+    public Ratings(Users users) {
+        this.users = users;
     }
 
-    public Ratings(Integer rating, Integer postId, Integer topicsId, Integer eventId, String username) {
+    public Ratings(Integer ratingId, Integer rating, String content, Integer postId, Integer topicsId, Integer eventId) {
+        this.ratingId = ratingId;
         this.rating = rating;
+        this.content = content;
         this.postId = postId;
         this.topicsId = topicsId;
         this.eventId = eventId;
-        this.username = username;
     }
 
     public Integer getRatingId() {
@@ -82,11 +87,19 @@ public class Ratings {
         this.eventId = eventId;
     }
 
-    public String getUsername() {
-        return username;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

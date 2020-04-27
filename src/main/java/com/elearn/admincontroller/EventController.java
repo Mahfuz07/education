@@ -20,6 +20,8 @@ import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -101,6 +103,7 @@ public class EventController {
 
     @RequestMapping(value = "/edit_event_notes/{id}", method = RequestMethod.GET)
     public String updateEventNotes(@PathVariable("id") int id, Model model, HttpServletRequest request) {
+
         try {
             model.addAttribute("event", eventService.findData(id));
         } catch (Exception ex) {
@@ -116,6 +119,10 @@ public class EventController {
 
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         String name = timeStamp + ".pdf";
+
+        Event existingEventNote = eventService.findData(eventId);
+
+        String deleteImage = existingEventNote.getNotesFile();
 
         if (!file.isEmpty()) {
             try {
@@ -141,6 +148,8 @@ public class EventController {
                 stream.write(bytes);
                 stream.close();
 
+                Files.delete(Paths.get("src/main/webapp/resources/"+deleteImage));
+
                 System.out.println("======== Server File Location="
                         + serverFile.getAbsolutePath());
 
@@ -155,7 +164,7 @@ public class EventController {
         //upload  info on database
         Event event = new Event();
         event.setEventId(eventId);
-        event.setNotesFile("upload/event_pdf/" + name);
+        event.setNotesFile("upload/event_pdf/"+name);
 
         try {
             boolean status = eventService.saveEventNotesFile(event);
@@ -189,6 +198,10 @@ public class EventController {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         String name = timeStamp + ".pptx";
 
+        Event existingEventNote = eventService.findData(eventId);
+
+        String deleteImage = existingEventNote.getPresentationFile();
+
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -213,6 +226,8 @@ public class EventController {
                 stream.write(bytes);
                 stream.close();
 
+                Files.delete(Paths.get("src/main/webapp/resources/"+deleteImage));
+
                 System.out.println("======== Server File Location="
                         + serverFile.getAbsolutePath());
 
@@ -227,7 +242,7 @@ public class EventController {
         //upload  info on database
         Event event = new Event();
         event.setEventId(eventId);
-        event.setPresentationFile("upload/event_ppt/" + name);
+        event.setPresentationFile("upload/event_ppt/"+name);
 
         try {
             boolean status = eventService.saveEventPPTFile(event);
@@ -310,16 +325,20 @@ public class EventController {
 
     @RequestMapping(value = "/updateEvent", method = RequestMethod.POST)
     public String updateEvent(Model model,@Valid Event event, BindingResult result, HttpServletRequest request) {
-    	
-    	 if (result.hasErrors()) {
-             List<ObjectError> errors = result.getAllErrors();
-             for (ObjectError error : errors) {
-                 System.out.println("========" + error.getDefaultMessage());
 
-             }
-             model.addAttribute("em", "Enter Correct Date format");
-             return "redirect:/admin/edit_event/" + event.getEventId();
-         }
+
+        if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            for (ObjectError error : errors) {
+                System.out.println("========" + error.getDefaultMessage());
+
+            }
+            model.addAttribute("em", "Enter Correct Date format");
+            return "redirect:/admin/edit_event/" + event.getEventId();
+        }
+
+
+
 
         try {
             Event e = eventService.findData(event.getEventId());
@@ -330,9 +349,11 @@ public class EventController {
 
             eventService.updateData(e);
             model.addAttribute("sm", "event update Successfull");
+
         } catch (Exception ex) {
-            model.addAttribute("em", "event update failed");
+
             Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
+            model.addAttribute("em", "event update failed");
         }
 
         return "redirect:/admin/edit_event/" + event.getEventId();
@@ -375,6 +396,10 @@ public class EventController {
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         String name = timeStamp + ".png";
 
+        Event existingEventNote = eventService.findData(eventId);
+
+        String deleteImage = existingEventNote.getEventPhoto();
+
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -400,6 +425,8 @@ public class EventController {
                 stream.write(bytes);
                 stream.close();
 
+                Files.delete(Paths.get("src/main/webapp/resources/"+deleteImage));
+
                 System.out.println("======== Server File Location=" + serverFile.getAbsolutePath());
 
                ImageResizer.resize(dir + "/" + name, dir + "/" + name, 300, 174);
@@ -414,7 +441,7 @@ public class EventController {
         }
 
         Event event = new Event();
-        event.setEventPhoto("upload/event_photo/" + name);
+        event.setEventPhoto("upload/event_photo/"+name);
         event.setEventId(eventId);
 
         try {

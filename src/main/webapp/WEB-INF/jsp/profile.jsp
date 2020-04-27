@@ -96,7 +96,7 @@
                 </tr>
                 <tr>
                     <th>Date of Birth</th>
-                    <td>{{user.dob| date: "dd/MM/yyyy"}}</td>
+                    <td>{{user.dob}}</td>
                 </tr>
                 <tr>
                     <th>Role</th>
