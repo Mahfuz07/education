@@ -74,27 +74,28 @@ public class EventController {
             return "redirect:/admin/add_event";
         }
 
-        //customize the video url
-
-        String s = request.getParameter("videoUrl");
-        int startIndex = s.indexOf("https://");
-        int endIndex = s.indexOf("frameborder");
-        String cut = s.substring(startIndex, endIndex - 2);
-
-
-        //get the username
-        User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        event.setVideoUrl(cut);
-        event.setUsername(u.getUsername());
-
-        System.out.println("=====" + event);
-
+       
         try {
+        	 //customize the video url
+
+            String s = request.getParameter("videoUrl");
+            int startIndex = s.indexOf("https://");
+            int endIndex = s.indexOf("frameborder");
+            String cut = s.substring(startIndex, endIndex - 2);
+
+
+            //get the username
+            User u = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            event.setVideoUrl(cut);
+            event.setUsername(u.getUsername());
+
+            System.out.println("=====" + event);
+
             eventService.saveData(event);
             model.addAttribute("sm", "Event Create Successfully");
         } catch (Exception ex) {
-            model.addAttribute("em", "Event Not Create");
+            model.addAttribute("em", "Event Not Create & Please use video embed code!");
             Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -286,7 +287,7 @@ public class EventController {
             eventService.updateEventVideo(event);
             model.addAttribute("sm", "Video Update Successfully");
         } catch (Exception ex) {
-            model.addAttribute("em", "Video not update & youtube embed code use");
+            model.addAttribute("em", "Video not update. Please use video embed code !");
             Logger.getLogger(EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
 

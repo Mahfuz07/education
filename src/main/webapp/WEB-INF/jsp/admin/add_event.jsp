@@ -57,6 +57,9 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-dot-circle-o"></i> Live Video Url</label>
+                                 <div class="alert alert-warning" role="alert">
+                                    Please use video emded code !
+                                </div>
                                 <textarea name="videoUrl" class="form-control"></textarea>
                             </div>
 

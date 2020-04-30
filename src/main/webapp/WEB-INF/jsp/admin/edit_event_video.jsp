@@ -43,6 +43,9 @@
                             
                             <div class="form-group">
                                 <label class="control-label"><i class="fa fa-dot-circle-o"></i> Live Video URL</label>
+                                 <div class="alert alert-warning" role="alert">
+                                    Please use video emded code !
+                                </div>
                                 <textarea name="videoUrl" class="form-control"><iframe width="300" height="150" src="${event.videoUrl}" frameborder="0" gesture="media" allowfullscreen></iframe></textarea>
                             </div>
                             

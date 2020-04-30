@@ -154,17 +154,18 @@ public class CourseController {
     @RequestMapping(value = "/updateCourseVideoUrl", method = RequestMethod.POST)
     public String updateCourseVideoUrl(Course course, Model model, HttpServletRequest request){
 
-        String s = request.getParameter("introVideo");
-        int startIndex = s.indexOf("https://");
-        int endIndex = s.indexOf("frameborder");
-        String cut = s.substring(startIndex, endIndex-2);
-        course.setIntroVideo(cut);
+       
 
         try {
+        	 String s = request.getParameter("introVideo");
+             int startIndex = s.indexOf("https://");
+             int endIndex = s.indexOf("frameborder");
+             String cut = s.substring(startIndex, endIndex-2);
+             course.setIntroVideo(cut);
             courseService.updteCourseVideo(course);
             model.addAttribute("sm", "Course Video Update successfully");
         } catch (Exception ex) {
-            model.addAttribute("em", "Video not update");
+            model.addAttribute("em", "Video not update .Please use video embed code!");
             Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
 

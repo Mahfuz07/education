@@ -43,6 +43,9 @@
                             
                             <div class="form-group">
                                 <label class="control-label"> Video URL</label>
+                                 <div class="alert alert-warning" role="alert">
+                                    Please use video emded code !
+                                </div>
                                 <c:choose>
                                     <c:when test="${course.introVideo == null}">
                                         <textarea name="introVideo" class="form-control"></textarea>

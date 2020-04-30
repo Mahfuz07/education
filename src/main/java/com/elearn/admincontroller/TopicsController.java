@@ -187,7 +187,7 @@ public class TopicsController {
 
 
         } catch (Exception ex) {
-            model.addAttribute("em", "Video Url not set & use youtube embed code");
+            model.addAttribute("em", "Video not update .Please use video embed code!");
             Logger.getLogger(TopicsController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "redirect:/admin/addTopicsVideo/" + topics.getTopicsId();

@@ -44,6 +44,9 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Video URL</label>
+                                 <div class="alert alert-warning" role="alert">
+                                    Please use video emded code !
+                                </div>
                                 <textarea name="videoUrl" class="form-control">${topic.videoUrl}</textarea>
                             </div>
                             
