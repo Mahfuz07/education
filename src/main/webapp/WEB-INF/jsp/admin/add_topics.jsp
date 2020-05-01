@@ -75,22 +75,22 @@
                     </div>
                     <div class="panel-body" ng-controller="topicsCtrl">
                         <form action="${pageContext.request.contextPath}/admin/saveTopics" method="post">
-<%--                            <div class="form-group">--%>
-<%--                                <label class="control-label">Select Course:</label>--%>
-<%--                                <select ng-change="getAllLessonsByCourseId()" class="form-control" ng-model="clickedCourse" ng-options="course.courseName for course in courses"></select>--%>
-<%--                            </div>--%>
-<%--                            <div class="form-group">--%>
-<%--                                <label class="control-label"></label>--%>
-<%--                                <input type="hidden"  name="courseId" value="{{clickedCourse.courseId}}"/>--%>
-<%--                            </div>--%>
-<%--                            <div class="form-group">--%>
-<%--                                <label class="control-label">Select Lesson:</label>--%>
-<%--                                <select name="lessonId" class="form-control">--%>
-<%--                                    <option value="{{lesson.lessonId}}" ng-repeat="lesson in lessons">{{lesson.lessonTitle}}</option>--%>
-<%--                                </select>--%>
-<%--                            </div>--%>
+                           <div class="form-group">
+                               <label class="control-label">Select Course:</label>
+                               <select ng-change="getAllLessonsByCourseId()" class="form-control" ng-model="clickedCourse" ng-options="course.courseName for course in courses"></select>
+                           </div>
+                           <div class="form-group">
+                               <label class="control-label"></label>
+                               <input type="hidden"  name="courseId" value="{{clickedCourse.courseId}}"/>
+                           </div>
+                           <div class="form-group">
+                               <label class="control-label">Select Lesson:</label>
+                               <select name="lessonId" class="form-control">
+                                   <option value="{{lesson.lessonId}}" ng-repeat="lesson in lessons">{{lesson.lessonTitle}}</option>
+                               </select>
+                           </div>
 
-                            <div class="form-group">
+                           <%--  <div class="form-group">
                                 <label class="control-label">Select Course:</label>
                                 <select id="courseId" name="courseId" class="form-control">
                                     <c:forEach var="row" items="${courses}">
@@ -105,7 +105,7 @@
                                         <option value="${row.lessonId}">${row.lessonTitle}</option>
                                     </c:forEach>
                                 </select>
-                            </div>
+                            </div> --%>
 
 
                             <div class="form-group">
