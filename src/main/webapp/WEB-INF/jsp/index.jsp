@@ -137,8 +137,8 @@
 
             </div>
             <div class="col-md-12" style="background: #122b40; color: #fff; text-align: center; padding: 25px;">
-                Copyright &copy; 2020 <a href="https://www.youtube.com/channel/UC4vVj7lKO7H4FohB3lv9dzA" target="_blank" style="color: yellow; text-decoration: none;">coderslab.com</a> | All Right Reserved.<br/>
-                Programmed by: Mahfuz Alam, Md. Uzzal, Nishat Jahan Bithy
+                Copyright &copy; 2020 <a href="https://www.youtube.com/channel/UC4vVj7lKO7H4FohB3lv9dzA" target="_blank" style="color: yellow; text-decoration: none;"></a> | All Right Reserved.<br/>
+                Programmed by: Mahfuz Alam, Md. Uzzal, Nayem Biswas
             </div>
 
 
