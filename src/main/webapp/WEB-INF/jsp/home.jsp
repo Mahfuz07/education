@@ -148,7 +148,7 @@
                                     <div class="content">
                                         <div class="main">
                                             <h3 class="name">Md. Uzzal</h3>
-                                            <p class="profession">Java Programmer</p>
+                                            <p class="profession">Senior Java Programmer</p>
                                             <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p>
                                         </div>
                                         <div class="footer">
@@ -213,7 +213,7 @@
                                     <div class="content">
                                         <div class="main">
                                             <h3 class="name">Mahfuz Alam</h3>
-                                            <p class="profession">Java Programmer</p>
+                                            <p class="profession">Senior Java Programmer</p>
                                             <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p>
                                         </div>
                                         <div class="footer">
@@ -277,8 +277,8 @@
                                     </div>
                                     <div class="content">
                                         <div class="main">
-                                            <h3 class="name">Nishat Jahan Bithy</h3>
-                                            <p class="profession">Java Programmer</p>
+                                            <h3 class="name">Nayem Biswas</h3>
+                                            <p class="profession">Junior Java Programmer</p>
                                             <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p>
                                         </div>
                                         <div class="footer">
