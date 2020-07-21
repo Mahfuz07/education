@@ -273,7 +273,7 @@
                                     </div>
                                     <div class="user">
 
-                                        <img class="img-circle" src="${pageContext.request.contextPath}/resources/img/bithy.png"/>
+                                        <img class="img-circle" src="${pageContext.request.contextPath}/resources/img/nayem.jpg"/>
                                     </div>
                                     <div class="content">
                                         <div class="main">
